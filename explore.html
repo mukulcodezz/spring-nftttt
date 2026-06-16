@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0a0e10">
+<meta name="description" content="Explore curated NFT collections on SpringNFT — art, generative, photography, and more.">
+<title>Explore Collections — SpringNFT</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Fraunces:ital,wght@0,600;0,700;0,800;1,700;1,800&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-page="explore">
+
+<a href="#main" class="skip-link">Skip to content</a>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <span class="logo-mark"></span>
+      Spring<em style="font-style:italic;color:var(--accent);">NFT</em>
+    </a>
+    <ul class="nav-links">
+      <li><a href="explore.html" data-i18n="nav.explore">explore</a></li>
+      <li><a href="index.html#trending" data-i18n="nav.trending">trending</a></li>
+      <li><a href="index.html#mint" data-i18n="nav.mint">mint</a></li>
+      <li><a href="index.html#rankings" data-i18n="nav.rankings">rankings</a></li>
+      <li><a href="creators.html" data-i18n="nav.creators">creators</a></li>
+      <li><a href="about.html" data-i18n="nav.about">about</a></li>
+    </ul>
+    <div class="nav-actions">
+      <div class="lang-switch">
+        <button type="button" class="lang-btn active" data-lang="en">EN</button>
+        <button type="button" class="lang-btn" data-lang="es">ES</button>
+        <button type="button" class="lang-btn" data-lang="ja">JA</button>
+      </div>
+      <button type="button" class="btn btn-primary btn-wallet-desktop" data-action="connect-wallet" data-i18n="nav.connect">Connect Wallet</button>
+      <button type="button" class="btn btn-primary btn-wallet-mobile-sm" data-action="connect-wallet">Wallet</button>
+      <button type="button" class="menu-toggle" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<div class="mobile-drawer" aria-hidden="true">
+  <div class="mobile-drawer-backdrop"></div>
+  <div class="mobile-drawer-panel">
+    <ul class="mobile-nav-links">
+      <li><a href="explore.html" data-i18n="nav.explore">explore</a></li>
+      <li><a href="index.html#trending" data-i18n="nav.trending">trending</a></li>
+      <li><a href="index.html#mint" data-i18n="nav.mint">mint</a></li>
+      <li><a href="index.html#rankings" data-i18n="nav.rankings">rankings</a></li>
+      <li><a href="creators.html" data-i18n="nav.creators">creators</a></li>
+      <li><a href="about.html" data-i18n="nav.about">about</a></li>
+      <li><a href="docs.html" data-i18n="nav.docs">docs</a></li>
+    </ul>
+    <div class="mobile-drawer-actions">
+      <div class="lang-switch">
+        <button type="button" class="lang-btn active" data-lang="en">EN</button>
+        <button type="button" class="lang-btn" data-lang="es">ES</button>
+        <button type="button" class="lang-btn" data-lang="ja">JA</button>
+      </div>
+      <button type="button" class="btn btn-primary btn-wallet-mobile" data-action="connect-wallet" data-i18n="nav.connect">Connect Wallet</button>
+    </div>
+  </div>
+</div>
+
+<main id="main">
+
+<section class="page-hero">
+  <div class="container">
+    <div class="breadcrumb reveal">
+      <a href="index.html" data-i18n="breadcrumb.home">Home</a>
+      <span>/</span>
+      <span data-i18n="nav.explore">explore</span>
+    </div>
+    <h1 class="reveal"><span data-i18n="explore.title">Explore</span> <span class="italic" style="color:var(--accent);" data-i18n="explore.titleItalic">collections</span></h1>
+    <p class="reveal" data-i18n="explore.lead">Browse curated drops across art, generative, photography, and more. Every listing is vetted by our council.</p>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="filter-bar reveal">
+      <div class="search-box">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        <input type="search" id="explore-search" data-i18n="explore.search" placeholder="Search collections…" aria-label="Search collections">
+      </div>
+      <button type="button" class="btn btn-ghost active" data-filter="all" data-i18n="explore.all">All</button>
+      <button type="button" class="btn btn-ghost" data-filter="art" data-i18n="explore.art">Art</button>
+      <button type="button" class="btn btn-ghost" data-filter="generative" data-i18n="explore.gen">Generative</button>
+      <button type="button" class="btn btn-ghost" data-filter="photo" data-i18n="explore.photo">Photography</button>
+      <button type="button" class="btn btn-ghost" data-filter="abstract" data-i18n="explore.abstract">Abstract</button>
+    </div>
+
+    <div class="grid-3 stagger" id="explore-grid">
+      <div class="collection-card reveal" data-category="art" data-name="goldenhour society">
+        <span class="col-tag">Art</span>
+        <div class="nft-image art-1"></div>
+        <div class="col-name">Goldenhour Society</div>
+        <div class="col-creator">@dawnbreaker.sol</div>
+        <div class="col-meta">
+          <div><div class="col-price-label" data-i18n="col.floor">Floor</div><div class="col-price">2 SOL</div></div>
+          <div class="col-change">+22.1%</div>
+        </div>
+      </div>
+      <div class="collection-card reveal" data-category="generative" data-name="tidepool codex">
+        <span class="col-tag">Gen</span>
+        <div class="nft-image art-2"></div>
+        <div class="col-name">Tidepool Codex</div>
+        <div class="col-creator">@coastlines</div>
+        <div class="col-meta">
+          <div><div class="col-price-label" data-i18n="col.floor">Floor</div><div class="col-price">2.5 SOL</div></div>
+          <div class="col-change">+11.7%</div>
+        </div>
+      </div>
+      <div class="collection-card reveal" data-category="abstract" data-name="static reverie">
+        <span class="col-tag">Abstract</span>
+        <div class="nft-image art-3"></div>
+        <div class="col-name">Static Reverie</div>
+        <div class="col-creator">@noise.studio</div>
+        <div class="col-meta">
+          <div><div class="col-price-label" data-i18n="col.floor">Floor</div><div class="col-price">6.2 SOL</div></div>
+          <div class="col-change down">-4.8%</div>
+        </div>
+      </div>
+      <div class="collection-card reveal" data-category="art" data-name="ember cartography">
+        <span class="col-tag">Art</span>
+        <div class="nft-image art-4"></div>
+        <div class="col-name">Ember Cartography</div>
+        <div class="col-creator">@firekeeper</div>
+        <div class="col-meta">
+          <div><div class="col-price-label" data-i18n="col.floor">Floor</div><div class="col-price">4.8 SOL</div></div>
+          <div class="col-change">+19.3%</div>
+        </div>
+      </div>
+      <div class="collection-card reveal" data-category="photo" data-name="quiet frequencies">
+        <span class="col-tag">Photo</span>
+        <div class="nft-image art-5"></div>
+        <div class="col-name">Quiet Frequencies</div>
+        <div class="col-creator">@analog.echo</div>
+        <div class="col-meta">
+          <div><div class="col-price-label" data-i18n="col.floor">Floor</div><div class="col-price">7.6 SOL</div></div>
+          <div class="col-change">+8.2%</div>
+        </div>
+      </div>
+      <div class="collection-card reveal" data-category="generative" data-name="lowtide atlas">
+        <span class="col-tag">Gen</span>
+        <div class="nft-image art-6"></div>
+        <div class="col-name">Lowtide Atlas</div>
+        <div class="col-creator">@saltwater</div>
+        <div class="col-meta">
+          <div><div class="col-price-label" data-i18n="col.floor">Floor</div><div class="col-price">12.5 SOL</div></div>
+          <div class="col-change">+14.6%</div>
+        </div>
+      </div>
+      <div class="collection-card reveal" data-category="abstract" data-name="neon pollen">
+        <span class="col-tag">Abstract</span>
+        <div class="nft-image art-2"></div>
+        <div class="col-name">Neon Pollen</div>
+        <div class="col-creator">@flux.garden</div>
+        <div class="col-meta">
+          <div><div class="col-price-label" data-i18n="col.floor">Floor</div><div class="col-price">3.1 SOL</div></div>
+          <div class="col-change">+5.4%</div>
+        </div>
+      </div>
+      <div class="collection-card reveal" data-category="photo" data-name="coastal archive">
+        <span class="col-tag">Photo</span>
+        <div class="nft-image art-5"></div>
+        <div class="col-name">Coastal Archive</div>
+        <div class="col-creator">@shoreline</div>
+        <div class="col-meta">
+          <div><div class="col-price-label" data-i18n="col.floor">Floor</div><div class="col-price">5.0 SOL</div></div>
+          <div class="col-change">+9.1%</div>
+        </div>
+      </div>
+      <div class="collection-card reveal" data-category="art" data-name="spring genesis">
+        <span class="col-tag">Featured</span>
+        <div class="nft-image art-1"></div>
+        <div class="col-name">Spring Genesis</div>
+        <div class="col-creator">@springnft</div>
+        <div class="col-meta">
+          <div><div class="col-price-label" data-i18n="col.floor">Floor</div><div class="col-price">2.2 SOL</div></div>
+          <div class="col-change">+31.2%</div>
+        </div>
+      </div>
+    </div>
+
+    <p id="no-results" class="hidden reveal" style="text-align:center;color:var(--text-dim);padding:48px 0;" data-i18n="explore.noResults">No collections match your search.</p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo"><span class="logo-mark"></span>Spring<em style="font-style:italic;color:var(--accent);">NFT</em></a>
+        <p data-i18n="footer.desc">A curator-first NFT marketplace on Solana.</p>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footer.marketplace">Marketplace</h4>
+        <ul>
+          <li><a href="explore.html" data-i18n="footer.explore">Explore</a></li>
+          <li><a href="index.html#trending" data-i18n="footer.trending">Trending</a></li>
+          <li><a href="index.html#rankings" data-i18n="footer.rankings">Rankings</a></li>
+          <li><a href="index.html#mint" data-i18n="footer.mint">Mint</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footer.resources">Resources</h4>
+        <ul>
+          <li><a href="docs.html" data-i18n="footer.documentation">Documentation</a></li>
+          <li><a href="docs.html#api" data-i18n="footer.api">Developer API</a></li>
+          <li><a href="about.html" data-i18n="footer.notes">Field Notes</a></li>
+          <li><a href="docs.html" data-i18n="footer.help">Help Center</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footer.community">Community</h4>
+        <ul>
+          <li><a href="#" data-i18n="footer.discord">Discord</a></li>
+          <li><a href="#" data-i18n="footer.twitter">Twitter / X</a></li>
+          <li><a href="#" data-i18n="footer.telegram">Telegram</a></li>
+          <li><a href="about.html" data-i18n="footer.dao">Spring DAO</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p data-i18n="footer.copyright">© 2026 SpringNFT — Bloom responsibly.</p>
+      <div class="socials">
+        <a href="#" aria-label="Twitter">𝕏</a>
+        <a href="#" aria-label="Discord">⬡</a>
+        <a href="#" aria-label="Telegram">✈</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/i18n.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

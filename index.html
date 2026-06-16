@@ -2,829 +2,105 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0a0e10">
+<meta name="description" content="SpringNFT — A curator-first NFT marketplace on Solana. Discover handpicked drops and instant settlement.">
 <title>SpringNFT — Where Digital Art Blooms</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Fraunces:ital,wght@0,600;0,700;0,800;1,700;1,800&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --bg: #0a0e10;
-    --bg-2: #11171a;
-    --surface: rgba(255, 255, 255, 0.03);
-    --border: rgba(255, 255, 255, 0.08);
-    --border-strong: rgba(255, 255, 255, 0.16);
-    --text: #f4ece4;
-    --text-dim: #95a0a3;
-    --text-faint: #5a6669;
-
-    --accent: #FF6B35;
-    --accent-warm: #FFB547;
-    --accent-2: #06A89E;
-    --accent-deep: #024B4F;
-    --accent-glow: rgba(255, 107, 53, 0.4);
-    --teal-glow: rgba(6, 168, 158, 0.4);
-    --danger: #ff4d6d;
-
-    --display: 'Fraunces', serif;
-    --sans: 'Outfit', sans-serif;
-    --mono: 'DM Mono', monospace;
-  }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: var(--sans);
-    line-height: 1.6;
-    overflow-x: hidden;
-    position: relative;
-  }
-
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background:
-      radial-gradient(ellipse 70% 50% at 15% 10%, rgba(255, 107, 53, 0.15), transparent 60%),
-      radial-gradient(ellipse 50% 40% at 85% 90%, rgba(6, 168, 158, 0.12), transparent 60%),
-      radial-gradient(ellipse 40% 30% at 90% 20%, rgba(255, 181, 71, 0.08), transparent 60%);
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  body::after {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
-    background-size: 60px 60px;
-    pointer-events: none;
-    z-index: 0;
-    mask-image: radial-gradient(ellipse 100% 80% at 50% 50%, black, transparent 80%);
-  }
-
-  .container {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0 32px;
-    position: relative;
-    z-index: 1;
-  }
-
-  nav {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    backdrop-filter: blur(20px);
-    background: rgba(10, 14, 16, 0.75);
-    border-bottom: 1px solid var(--border);
-  }
-
-  .nav-inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 18px 32px;
-    max-width: 1280px;
-    margin: 0 auto;
-  }
-
-  .logo {
-    font-family: var(--display);
-    font-weight: 800;
-    font-size: 24px;
-    letter-spacing: -0.02em;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .logo-mark {
-    width: 30px;
-    height: 30px;
-    background: linear-gradient(135deg, var(--accent), var(--accent-warm));
-    border-radius: 50% 50% 50% 0;
-    transform: rotate(-45deg);
-    position: relative;
-    display: inline-block;
-    box-shadow: 0 0 20px var(--accent-glow);
-  }
-
-  .logo-mark::after {
-    content: '';
-    position: absolute;
-    inset: 6px;
-    background: var(--accent-2);
-    border-radius: 50%;
-  }
-
-  .nav-links {
-    display: flex;
-    gap: 36px;
-    list-style: none;
-  }
-
-  .nav-links a {
-    color: var(--text-dim);
-    text-decoration: none;
-    font-size: 13px;
-    font-weight: 500;
-    transition: color 0.2s;
-    font-family: var(--mono);
-    text-transform: lowercase;
-  }
-
-  .nav-links a:hover { color: var(--accent); }
-
-  .btn {
-    padding: 11px 22px;
-    border-radius: 100px;
-    font-weight: 600;
-    font-size: 14px;
-    cursor: pointer;
-    border: none;
-    transition: all 0.25s;
-    font-family: var(--sans);
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .btn-primary {
-    background: linear-gradient(135deg, var(--accent), var(--accent-warm));
-    color: #1a0a00;
-    box-shadow: 0 0 0 0 var(--accent-glow);
-  }
-
-  .btn-primary:hover {
-    box-shadow: 0 0 36px 4px var(--accent-glow);
-    transform: translateY(-1px);
-  }
-
-  .btn-outline {
-    background: transparent;
-    color: var(--text);
-    border: 1px solid var(--border-strong);
-  }
-
-  .btn-outline:hover {
-    border-color: var(--accent-2);
-    color: var(--accent-2);
-  }
-
-  .hero {
-    padding: 100px 0 60px;
-    text-align: center;
-    position: relative;
-  }
-
-  .badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 6px 14px;
-    background: rgba(6, 168, 158, 0.1);
-    border: 1px solid rgba(6, 168, 158, 0.3);
-    border-radius: 100px;
-    font-family: var(--mono);
-    font-size: 12px;
-    color: var(--accent-2);
-    margin-bottom: 32px;
-  }
-
-  .pulse {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--accent-2);
-    box-shadow: 0 0 12px var(--accent-2);
-    animation: pulse 1.5s ease-in-out infinite;
-  }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.5; transform: scale(1.3); }
-  }
-
-  .hero h1 {
-    font-family: var(--display);
-    font-size: clamp(44px, 7.5vw, 96px);
-    line-height: 0.95;
-    font-weight: 700;
-    letter-spacing: -0.04em;
-    margin-bottom: 28px;
-    color: var(--text);
-  }
-
-  .hero h1 .accent {
-    background: linear-gradient(135deg, var(--accent), var(--accent-warm));
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-style: italic;
-    font-weight: 800;
-  }
-
-  .hero h1 .accent-2 {
-    background: linear-gradient(135deg, var(--accent-2), #4dd9d0);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-style: italic;
-    font-weight: 800;
-  }
-
-  .hero p {
-    font-size: 19px;
-    color: var(--text-dim);
-    max-width: 600px;
-    margin: 0 auto 40px;
-    line-height: 1.5;
-  }
-
-  .hero-cta {
-    display: flex;
-    gap: 14px;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-
-  .stats {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1px;
-    background: var(--border);
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    overflow: hidden;
-    margin: 80px 0;
-  }
-
-  .stat {
-    background: var(--bg);
-    padding: 32px 24px;
-    text-align: center;
-    transition: background 0.3s;
-  }
-
-  .stat:hover { background: var(--bg-2); }
-
-  .stat-num {
-    font-family: var(--display);
-    font-size: 36px;
-    font-weight: 700;
-    color: var(--accent);
-    letter-spacing: -0.02em;
-    font-style: italic;
-  }
-
-  .stat-label {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--text-faint);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin-top: 6px;
-  }
-
-  .section-tag {
-    font-family: var(--mono);
-    font-size: 12px;
-    color: var(--accent-2);
-    letter-spacing: 0.1em;
-    margin-bottom: 14px;
-    display: block;
-  }
-
-  .section-title {
-    font-family: var(--display);
-    font-size: clamp(34px, 4.5vw, 58px);
-    font-weight: 700;
-    letter-spacing: -0.03em;
-    margin-bottom: 48px;
-    line-height: 1;
-  }
-
-  .section-title .italic {
-    font-style: italic;
-    color: var(--accent);
-  }
-
-  section {
-    padding: 80px 0;
-    position: relative;
-  }
-
-  .grid-3 {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-  }
-
-  .collection-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 18px;
-    padding: 16px;
-    transition: all 0.3s;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .collection-card:hover {
-    border-color: var(--accent);
-    transform: translateY(-4px);
-    box-shadow: 0 16px 40px -16px var(--accent-glow);
-  }
-
-  .nft-image {
-    aspect-ratio: 1;
-    border-radius: 12px;
-    margin-bottom: 16px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .art-1 { background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0MDAgNDAwIj4gPHJlY3Qgd2lkdGg9IjQwMCIgaGVpZ2h0PSI0MDAiIGZpbGw9IiMxYTBhMTQiLz4gPHJlY3QgeT0iMCIgd2lkdGg9IjQwMCIgaGVpZ2h0PSIyNDAiIGZpbGw9IiMzZDE1MTgiLz4gPHJlY3QgeT0iMTIwIiB3aWR0aD0iNDAwIiBoZWlnaHQ9IjEyMCIgZmlsbD0iI0ZGNkIzNSIvPiA8cmVjdCB5PSIxODAiIHdpZHRoPSI0MDAiIGhlaWdodD0iNjAiIGZpbGw9IiNGRkI1NDciLz4gPGNpcmNsZSBjeD0iMjAwIiBjeT0iMjAwIiByPSI1NSIgZmlsbD0iI0ZGRTBBMyIvPiA8cGF0aCBkPSJNMCAyNDAgUTEwMCAyMDAgMjAwIDIzMCBUNDAwIDIyMCBMNDAwIDQwMCBMMCA0MDAgWiIgZmlsbD0iIzAyNEI0RiIvPiA8cGF0aCBkPSJNMCAyODAgUTEyMCAyNTAgMjQwIDI3MCBUNDAwIDI2MCBMNDAwIDQwMCBMMCA0MDAgWiIgZmlsbD0iIzA2QTg5RSIgb3BhY2l0eT0iMC44NSIvPiA8cGF0aCBkPSJNMCAzMzAgUTE1MCAzMDUgMjgwIDMyMCBUNDAwIDMxNSBMNDAwIDQwMCBMMCA0MDAgWiIgZmlsbD0iIzBhMWExYyIvPiA8Y2lyY2xlIGN4PSI4MCIgY3k9IjgwIiByPSIyIiBmaWxsPSIjRkZFMEEzIi8+IDxjaXJjbGUgY3g9IjMyMCIgY3k9IjYwIiByPSIxLjUiIGZpbGw9IiNGRkUwQTMiLz4gPGNpcmNsZSBjeD0iMzUwIiBjeT0iMTAwIiByPSIyIiBmaWxsPSIjRkZFMEEzIi8+IDxjaXJjbGUgY3g9IjYwIiBjeT0iMTIwIiByPSIxLjUiIGZpbGw9IiNGRkUwQTMiLz4gPC9zdmc+'); background-size: cover; background-position: center; }
-  .art-2 { background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0MDAgNDAwIj4gPHJlY3Qgd2lkdGg9IjQwMCIgaGVpZ2h0PSI0MDAiIGZpbGw9IiMwMjRCNEYiLz4gPGNpcmNsZSBjeD0iMTAwIiBjeT0iMTAwIiByPSI4MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDZBODlFIiBzdHJva2Utd2lkdGg9IjEuNSIgb3BhY2l0eT0iMC40Ii8+IDxjaXJjbGUgY3g9IjEwMCIgY3k9IjEwMCIgcj0iMTIwIiBmaWxsPSJub25lIiBzdHJva2U9IiMwNkE4OUUiIHN0cm9rZS13aWR0aD0iMS41IiBvcGFjaXR5PSIwLjMiLz4gPGNpcmNsZSBjeD0iMTAwIiBjeT0iMTAwIiByPSIxNjAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzA2QTg5RSIgc3Ryb2tlLXdpZHRoPSIxLjUiIG9wYWNpdHk9IjAuMiIvPiA8Y2lyY2xlIGN4PSIzMjAiIGN5PSIyODAiIHI9IjYwIiBmaWxsPSJub25lIiBzdHJva2U9IiMwNkE4OUUiIHN0cm9rZS13aWR0aD0iMS41IiBvcGFjaXR5PSIwLjQiLz4gPGNpcmNsZSBjeD0iMzIwIiBjeT0iMjgwIiByPSIxMDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzA2QTg5RSIgc3Ryb2tlLXdpZHRoPSIxLjUiIG9wYWNpdHk9IjAuMjUiLz4gPHBhdGggZD0iTTE4MCAyMjAgUTIyMCAxODAgMjcwIDIwMCBRMzAwIDIxNSAyOTAgMjUwIFEyODAgMjgwIDI0MCAyODAgUTIwMCAyNzUgMTgwIDI1MCBaIiBmaWxsPSIjRkY2QjM1Ii8+IDxwYXRoIGQ9Ik0xODAgMjM1IFEyMDAgMjQwIDIyMCAyMzUiIHN0cm9rZT0iIzFhMGExNCIgc3Ryb2tlLXdpZHRoPSIyIiBmaWxsPSJub25lIi8+IDxjaXJjbGUgY3g9IjI2NSIgY3k9IjIyNSIgcj0iMyIgZmlsbD0iIzFhMGExNCIvPiA8cGF0aCBkPSJNMjcwIDIwMCBRMjk1IDE5NSAzMTAgMjE1IiBzdHJva2U9IiNGRkI1NDciIHN0cm9rZS13aWR0aD0iMiIgZmlsbD0ibm9uZSIvPiA8cGF0aCBkPSJNMjg1IDI0MCBRMzEwIDI0NSAzMjUgMjYwIiBzdHJva2U9IiNGRkI1NDciIHN0cm9rZS13aWR0aD0iMiIgZmlsbD0ibm9uZSIvPiA8cGF0aCBkPSJNMTcwIDI1MCBRMTUwIDI3MCAxMzAgMjYwIFExNDAgMjQ1IDE3MCAyNTAgWiIgZmlsbD0iI0ZGNkIzNSIgb3BhY2l0eT0iMC45Ii8+IDwvc3ZnPg=='); background-size: cover; background-position: center; }
-  .art-3 { background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0MDAgNDAwIj4gPHJlY3Qgd2lkdGg9IjQwMCIgaGVpZ2h0PSI0MDAiIGZpbGw9IiMwYTBlMTAiLz4gPHBhdGggZD0iTTAgMjAwIEw0MCAyMDAgTDQwIDE4MCBMODAgMTgwIEw4MCAyMjAgTDEyMCAyMjAgTDEyMCAxOTUgTDE2MCAxOTUgTDE2MCAyMTAgTDIwMCAyMTAgTDIwMCAxNzUgTDI0MCAxNzUgTDI0MCAyMDUgTDI4MCAyMDUgTDI4MCAxOTAgTDMyMCAxOTAgTDMyMCAyMTUgTDM2MCAyMTUgTDM2MCAyMDAgTDQwMCAyMDAiIHN0cm9rZT0iI0ZGNkIzNSIgc3Ryb2tlLXdpZHRoPSIyLjUiIGZpbGw9Im5vbmUiLz4gPHBhdGggZD0iTTAgMjUwIEwzMCAyNTAgTDMwIDIzNSBMNzAgMjM1IEw3MCAyNjAgTDExMCAyNjAgTDExMCAyNDAgTDE1MCAyNDAgTDE1MCAyNTUgTDE5MCAyNTUgTDE5MCAyMzAgTDIzMCAyMzAgTDIzMCAyNTAgTDI3MCAyNTAgTDI3MCAyMzUgTDMxMCAyMzUgTDMxMCAyNjAgTDM1MCAyNjAgTDM1MCAyNDUgTDQwMCAyNDUiIHN0cm9rZT0iIzA2QTg5RSIgc3Ryb2tlLXdpZHRoPSIyLjUiIGZpbGw9Im5vbmUiLz4gPHBhdGggZD0iTTAgMTUwIEwyNSAxNTAgTDI1IDEzNSBMNjUgMTM1IEw2NSAxNTUgTDEwMCAxNTUgTDEwMCAxNDAgTDE0MCAxNDAgTDE0MCAxNjAgTDE4MCAxNjAgTDE4MCAxNDUgTDIyMCAxNDUgTDIyMCAxNjUgTDI2MCAxNjUgTDI2MCAxNTAgTDMwMCAxNTAgTDMwMCAxMzUgTDM0MCAxMzUgTDM0MCAxNTUgTDQwMCAxNTUiIHN0cm9rZT0iI0ZGQjU0NyIgc3Ryb2tlLXdpZHRoPSIyIiBmaWxsPSJub25lIi8+IDxjaXJjbGUgY3g9IjYwIiBjeT0iODAiIHI9IjIiIGZpbGw9IiNGRjZCMzUiLz4gPGNpcmNsZSBjeD0iMzQwIiBjeT0iMzIwIiByPSIzIiBmaWxsPSIjMDZBODlFIi8+IDxjaXJjbGUgY3g9IjI4MCIgY3k9IjEwMCIgcj0iMS41IiBmaWxsPSIjRkZCNTQ3Ii8+IDxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSI0MDAiIGhlaWdodD0iMiIgZmlsbD0iI0ZGNkIzNSIgb3BhY2l0eT0iMC4zIi8+IDxyZWN0IHg9IjAiIHk9IjM5OCIgd2lkdGg9IjQwMCIgaGVpZ2h0PSIyIiBmaWxsPSIjMDZBODlFIiBvcGFjaXR5PSIwLjMiLz4gPC9zdmc+'); background-size: cover; background-position: center; }
-  .art-4 { background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0MDAgNDAwIj4gPHJlY3Qgd2lkdGg9IjQwMCIgaGVpZ2h0PSI0MDAiIGZpbGw9IiMxYTBhMDUiLz4gPGVsbGlwc2UgY3g9IjIwMCIgY3k9IjI0MCIgcng9IjE4MCIgcnk9IjEyMCIgZmlsbD0iIzNkMTUxOCIvPiA8ZWxsaXBzZSBjeD0iMjAwIiBjeT0iMjcwIiByeD0iMTIwIiByeT0iODAiIGZpbGw9IiNGRjZCMzUiIG9wYWNpdHk9IjAuNyIvPiA8ZWxsaXBzZSBjeD0iMjAwIiBjeT0iMjkwIiByeD0iNjAiIHJ5PSI0MCIgZmlsbD0iI0ZGQjU0NyIgb3BhY2l0eT0iMC45Ii8+IDxwYXRoIGQ9Ik0xODAgMjYwIFExOTAgMjMwIDE5NSAyNTAgUTIwMCAyMjAgMjA1IDI1MCBRMjEwIDIzMCAyMjAgMjYwIEwyMjAgMjkwIEwxODAgMjkwIFoiIGZpbGw9IiNGRkUwQTMiLz4gPHBhdGggZD0iTTI3MCAzMjAgUTI1NSAzMDUgMjYwIDI4NSBRMjcwIDI3NSAyODUgMjgwIFEzMDAgMjg1IDMwNSAzMDAgUTMxMCAzMTUgMjk1IDMyNSBRMjg1IDMzMCAyODAgMzM1IEwyODAgMzIwIFoiIGZpbGw9IiMwYTBlMTAiLz4gPHBhdGggZD0iTTI5NSAyOTUgTDMwNSAyODAiIHN0cm9rZT0iIzBhMGUxMCIgc3Ryb2tlLXdpZHRoPSIzIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4gPHBhdGggZD0iTTI5OCAyODcgTDMwOCAyODIiIHN0cm9rZT0iIzBhMGUxMCIgc3Ryb2tlLXdpZHRoPSIyLjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPiA8Y2lyY2xlIGN4PSIyOTAiIGN5PSIzMDAiIHI9IjEuNSIgZmlsbD0iI0ZGNkIzNSIvPiA8cGF0aCBkPSJNMTcwIDMxMCBMMjMwIDMxMCIgc3Ryb2tlPSIjMGEwZTEwIiBzdHJva2Utd2lkdGg9IjMiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPiA8cGF0aCBkPSJNMTgwIDMwNSBMMjIwIDMxNSIgc3Ryb2tlPSIjMGEwZTEwIiBzdHJva2Utd2lkdGg9IjMiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPiA8Y2lyY2xlIGN4PSI4MCIgY3k9IjYwIiByPSIxIiBmaWxsPSIjRkZFMEEzIi8+IDxjaXJjbGUgY3g9IjM0MCIgY3k9IjgwIiByPSIxLjUiIGZpbGw9IiNGRkUwQTMiLz4gPGNpcmNsZSBjeD0iMTIwIiBjeT0iMTAwIiByPSIxIiBmaWxsPSIjRkZFMEEzIi8+IDxjaXJjbGUgY3g9IjMyMCIgY3k9IjQwIiByPSIxIiBmaWxsPSIjRkZFMEEzIi8+IDwvc3ZnPg=='); background-size: cover; background-position: center; }
-  .art-5 { background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0MDAgNDAwIj4gPHJlY3Qgd2lkdGg9IjQwMCIgaGVpZ2h0PSI0MDAiIGZpbGw9IiMwYTFhMWMiLz4gPHJlY3QgeT0iMCIgd2lkdGg9IjQwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9IiMzZDE1MTgiLz4gPHJlY3QgeT0iMTAwIiB3aWR0aD0iNDAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iI0ZGNkIzNSIgb3BhY2l0eT0iMC43Ii8+IDxyZWN0IHk9IjE2MCIgd2lkdGg9IjQwMCIgaGVpZ2h0PSI0MCIgZmlsbD0iI0ZGQjU0NyIgb3BhY2l0eT0iMC42Ii8+IDxjaXJjbGUgY3g9IjI5MCIgY3k9IjEwMCIgcj0iMzUiIGZpbGw9IiNGRkUwQTMiLz4gPHBhdGggZD0iTTAgMjAwIEw4MCAxMzAgTDEzMCAxNzAgTDIwMCAxMDAgTDI2MCAxNTAgTDMyMCAxMTAgTDQwMCAxNzAgTDQwMCAyMDAgWiIgZmlsbD0iIzAyNEI0RiIvPiA8cGF0aCBkPSJNMCAyMDAgTDgwIDI3MCBMMTMwIDIzMCBMMjAwIDMwMCBMMjYwIDI1MCBMMzIwIDI5MCBMNDAwIDIzMCBMNDAwIDIwMCBaIiBmaWxsPSIjMDI0QjRGIiBvcGFjaXR5PSIwLjciLz4gPGNpcmNsZSBjeD0iMjkwIiBjeT0iMzAwIiByPSIzNSIgZmlsbD0iI0ZGRTBBMyIgb3BhY2l0eT0iMC4zIi8+IDxsaW5lIHgxPSIwIiB5MT0iMjIwIiB4Mj0iNDAwIiB5Mj0iMjIwIiBzdHJva2U9IiMwNkE4OUUiIHN0cm9rZS13aWR0aD0iMC41IiBvcGFjaXR5PSIwLjQiLz4gPGxpbmUgeDE9IjAiIHkxPSIyNDAiIHgyPSI0MDAiIHkyPSIyNDAiIHN0cm9rZT0iIzA2QTg5RSIgc3Ryb2tlLXdpZHRoPSIwLjUiIG9wYWNpdHk9IjAuMyIvPiA8bGluZSB4MT0iMCIgeTE9IjI2MCIgeDI9IjQwMCIgeTI9IjI2MCIgc3Ryb2tlPSIjMDZBODlFIiBzdHJva2Utd2lkdGg9IjAuNSIgb3BhY2l0eT0iMC4yIi8+IDxsaW5lIHgxPSIwIiB5MT0iMjgwIiB4Mj0iNDAwIiB5Mj0iMjgwIiBzdHJva2U9IiMwNkE4OUUiIHN0cm9rZS13aWR0aD0iMC41IiBvcGFjaXR5PSIwLjE1Ii8+IDwvc3ZnPg=='); background-size: cover; background-position: center; }
-  .art-6 { background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0MDAgNDAwIj4gPHJlY3Qgd2lkdGg9IjQwMCIgaGVpZ2h0PSI0MDAiIGZpbGw9IiNGRkI1NDciLz4gPHBhdGggZD0iTTAgMTAwIFE1MCA4MCAxMDAgMTAwIFQyMDAgMTAwIFQzMDAgMTAwIFQ0MDAgMTAwIEw0MDAgMCBMMCAwIFoiIGZpbGw9IiNGRjZCMzUiLz4gPHBhdGggZD0iTTAgMTYwIFE1MCAxNDAgMTAwIDE2MCBUMjAwIDE2MCBUMzAwIDE2MCBUNDAwIDE2MCBMNDAwIDEwMCBMMCAxMDAgWiIgZmlsbD0iI0ZGQjU0NyIvPiA8cGF0aCBkPSJNMCAyMjAgUTUwIDIwMCAxMDAgMjIwIFQyMDAgMjIwIFQzMDAgMjIwIFQ0MDAgMjIwIEw0MDAgMTYwIEwwIDE2MCBaIiBmaWxsPSIjMDZBODlFIi8+IDxwYXRoIGQ9Ik0wIDI4MCBRNTAgMjYwIDEwMCAyODAgVDIwMCAyODAgVDMwMCAyODAgVDQwMCAyODAgTDQwMCAyMjAgTDAgMjIwIFoiIGZpbGw9IiMwMjRCNEYiLz4gPHBhdGggZD0iTTAgMzQwIFE1MCAzMjAgMTAwIDM0MCBUMjAwIDM0MCBUMzAwIDM0MCBUNDAwIDM0MCBMNDAwIDI4MCBMMCAyODAgWiIgZmlsbD0iIzBhMWExYyIvPiA8cGF0aCBkPSJNMCA0MDAgTDAgMzQwIFE1MCAzMjAgMTAwIDM0MCBUMjAwIDM0MCBUMzAwIDM0MCBUNDAwIDM0MCBMNDAwIDQwMCBaIiBmaWxsPSIjMDI0QjRGIi8+IDxjaXJjbGUgY3g9IjgwIiBjeT0iNTAiIHI9IjIwIiBmaWxsPSIjRkZFMEEzIi8+IDxwYXRoIGQ9Ik00MCAyMzAgUTYwIDIyNSA4MCAyMzAiIHN0cm9rZT0iI0ZGQjU0NyIgc3Ryb2tlLXdpZHRoPSIxLjUiIGZpbGw9Im5vbmUiIG9wYWNpdHk9IjAuNiIvPiA8cGF0aCBkPSJNMTIwIDI1MCBRMTQwIDI0NSAxNjAgMjUwIiBzdHJva2U9IiNGRkI1NDciIHN0cm9rZS13aWR0aD0iMS41IiBmaWxsPSJub25lIiBvcGFjaXR5PSIwLjYiLz4gPHBhdGggZD0iTTI0MCAyNDAgUTI2MCAyMzUgMjgwIDI0MCIgc3Ryb2tlPSIjRkZCNTQ3IiBzdHJva2Utd2lkdGg9IjEuNSIgZmlsbD0ibm9uZSIgb3BhY2l0eT0iMC42Ii8+IDxwYXRoIGQ9Ik0zMTAgMjYwIFEzMzAgMjU1IDM1MCAyNjAiIHN0cm9rZT0iI0ZGQjU0NyIgc3Ryb2tlLXdpZHRoPSIxLjUiIGZpbGw9Im5vbmUiIG9wYWNpdHk9IjAuNiIvPiA8L3N2Zz4='); background-size: cover; background-position: center; }
-
-  .nft-image::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background:
-      radial-gradient(circle at 20% 80%, rgba(255,255,255,0.08), transparent 40%),
-      radial-gradient(circle at 80% 20%, rgba(0,0,0,0.15), transparent 40%);
-    pointer-events: none;
-  }
-
-  .col-name {
-    font-family: var(--display);
-    font-weight: 700;
-    font-size: 17px;
-    margin-bottom: 4px;
-    letter-spacing: -0.01em;
-  }
-
-  .col-creator {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--text-faint);
-    margin-bottom: 14px;
-  }
-
-  .col-meta {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-top: 12px;
-    border-top: 1px solid var(--border);
-  }
-
-  .col-price-label {
-    font-family: var(--mono);
-    font-size: 10px;
-    color: var(--text-faint);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-  }
-
-  .col-price {
-    font-family: var(--mono);
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--text);
-  }
-
-  .col-change {
-    font-family: var(--mono);
-    font-size: 12px;
-    color: var(--accent-2);
-    font-weight: 500;
-  }
-
-  .col-change.down { color: var(--danger); }
-
-  .mint-card {
-    max-width: 560px;
-    margin: 0 auto;
-    background: linear-gradient(180deg, rgba(255, 107, 53, 0.08), rgba(6, 168, 158, 0.05));
-    border: 1px solid var(--border-strong);
-    border-radius: 28px;
-    padding: 44px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .mint-card::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: conic-gradient(from 0deg, transparent, var(--accent), transparent 30%);
-    animation: spin 10s linear infinite;
-    opacity: 0.18;
-  }
-
-  .mint-card > * { position: relative; z-index: 1; }
-
-  @keyframes spin {
-    to { transform: rotate(360deg); }
-  }
-
-  .mint-preview {
-    width: 200px;
-    height: 200px;
-    margin: 0 auto 24px;
-    border-radius: 20px;
-    background: conic-gradient(from 45deg, #FF6B35, #FFB547, #06A89E, #FF6B35);
-    position: relative;
-    box-shadow: 0 24px 60px -10px var(--accent-glow);
-  }
-
-  .mint-preview::after {
-    content: 'BLOOM 001';
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: var(--display);
-    font-style: italic;
-    font-weight: 800;
-    font-size: 26px;
-    color: rgba(0,0,0,0.45);
-    letter-spacing: 0.05em;
-  }
-
-  .mint-card h3 {
-    font-family: var(--display);
-    font-size: 30px;
-    margin-bottom: 12px;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-  }
-
-  .mint-card h3 .italic {
-    font-style: italic;
-    color: var(--accent);
-  }
-
-  .mint-card p {
-    color: var(--text-dim);
-    font-size: 15px;
-    margin-bottom: 28px;
-  }
-
-  .mint-meta {
-    display: flex;
-    justify-content: center;
-    gap: 32px;
-    margin-bottom: 28px;
-    padding: 18px;
-    background: rgba(0,0,0,0.35);
-    border-radius: 14px;
-    border: 1px solid var(--border);
-  }
-
-  .mint-meta-item { text-align: left; }
-
-  .mint-meta-label {
-    font-family: var(--mono);
-    font-size: 10px;
-    color: var(--text-faint);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-  }
-
-  .mint-meta-value {
-    font-weight: 600;
-    font-size: 14px;
-    margin-top: 4px;
-    color: var(--text);
-  }
-
-  .features-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-  }
-
-  .feature {
-    padding: 32px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 18px;
-    transition: all 0.3s;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .feature:hover {
-    border-color: var(--accent);
-    transform: translateY(-4px);
-  }
-
-  .feature-icon {
-    width: 52px;
-    height: 52px;
-    border-radius: 14px;
-    background: linear-gradient(135deg, rgba(255, 107, 53, 0.2), rgba(6, 168, 158, 0.15));
-    border: 1px solid var(--border-strong);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 26px;
-    margin-bottom: 22px;
-  }
-
-  .feature h3 {
-    font-family: var(--display);
-    font-size: 22px;
-    font-weight: 700;
-    margin-bottom: 10px;
-    letter-spacing: -0.01em;
-  }
-
-  .feature p {
-    color: var(--text-dim);
-    font-size: 14px;
-    line-height: 1.6;
-  }
-
-  .leaderboard {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 18px;
-    overflow: hidden;
-  }
-
-  .lb-row {
-    display: grid;
-    grid-template-columns: 60px 2fr 1fr 1fr 1fr;
-    gap: 16px;
-    padding: 18px 24px;
-    align-items: center;
-    border-bottom: 1px solid var(--border);
-    font-size: 14px;
-  }
-
-  .lb-row:last-child { border-bottom: none; }
-
-  .lb-header {
-    background: rgba(255,255,255,0.02);
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--text-faint);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-  }
-
-  .lb-rank {
-    font-family: var(--display);
-    font-style: italic;
-    font-weight: 700;
-    color: var(--accent);
-    font-size: 18px;
-  }
-
-  .lb-collection {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font-family: var(--display);
-    font-weight: 600;
-    font-size: 15px;
-  }
-
-  .lb-thumb {
-    width: 38px;
-    height: 38px;
-    border-radius: 10px;
-    object-fit: cover;
-    background: var(--bg-2);
-  }
-
-  .lb-row:not(.lb-header):hover {
-    background: rgba(255, 107, 53, 0.04);
-  }
-
-  footer {
-    border-top: 1px solid var(--border);
-    padding: 80px 0 32px;
-    margin-top: 60px;
-  }
-
-  .footer-grid {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr;
-    gap: 48px;
-    margin-bottom: 48px;
-  }
-
-  .footer-brand { max-width: 340px; }
-
-  .footer-brand p {
-    color: var(--text-dim);
-    font-size: 14px;
-    margin-top: 16px;
-    line-height: 1.6;
-  }
-
-  .footer-col h4 {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--accent);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin-bottom: 20px;
-  }
-
-  .footer-col ul { list-style: none; }
-  .footer-col li { margin-bottom: 10px; }
-
-  .footer-col a {
-    color: var(--text-dim);
-    text-decoration: none;
-    font-size: 14px;
-    transition: color 0.2s;
-  }
-
-  .footer-col a:hover { color: var(--accent); }
-
-  .footer-bottom {
-    padding-top: 32px;
-    border-top: 1px solid var(--border);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 16px;
-  }
-
-  .footer-bottom p {
-    font-family: var(--mono);
-    font-size: 12px;
-    color: var(--text-faint);
-  }
-
-  .socials {
-    display: flex;
-    gap: 12px;
-  }
-
-  .socials a {
-    width: 38px;
-    height: 38px;
-    border-radius: 10px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    color: var(--text-dim);
-    transition: all 0.2s;
-    font-size: 14px;
-  }
-
-  .socials a:hover {
-    color: var(--accent);
-    border-color: var(--accent);
-    transform: translateY(-2px);
-  }
-
-  @media (max-width: 900px) {
-    .nav-links { display: none; }
-    .stats { grid-template-columns: repeat(2, 1fr); }
-    .grid-3, .features-grid { grid-template-columns: 1fr; }
-    .footer-grid { grid-template-columns: 1fr 1fr; }
-    .lb-row { grid-template-columns: 40px 2fr 1fr; font-size: 13px; }
-    .lb-row > :nth-child(4), .lb-row > :nth-child(5) { display: none; }
-    .container, .nav-inner { padding-left: 20px; padding-right: 20px; }
-  }
-
-  @media (max-width: 500px) {
-    .footer-grid { grid-template-columns: 1fr; gap: 32px; }
-    .stats { grid-template-columns: 1fr 1fr; }
-    .mint-meta { gap: 16px; flex-wrap: wrap; }
-  }
-
-  /* === SCROLL REVEAL ANIMATIONS === */
-  .reveal {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
-                transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
-    will-change: opacity, transform;
-  }
-
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* Staggered children — set delays so cards appear one after another */
-  .stagger > *.reveal {
-    transition-delay: 0s;
-  }
-  .stagger > *.reveal:nth-child(1).visible { transition-delay: 0s; }
-  .stagger > *.reveal:nth-child(2).visible { transition-delay: 0.08s; }
-  .stagger > *.reveal:nth-child(3).visible { transition-delay: 0.16s; }
-  .stagger > *.reveal:nth-child(4).visible { transition-delay: 0.24s; }
-  .stagger > *.reveal:nth-child(5).visible { transition-delay: 0.32s; }
-  .stagger > *.reveal:nth-child(6).visible { transition-delay: 0.4s; }
-
-  /* Hero entrance — runs immediately on page load */
-  .hero-reveal {
-    opacity: 0;
-    transform: translateY(20px);
-    animation: heroFadeIn 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-  }
-  .hero-reveal:nth-child(1) { animation-delay: 0.1s; }
-  .hero-reveal:nth-child(2) { animation-delay: 0.25s; }
-  .hero-reveal:nth-child(3) { animation-delay: 0.4s; }
-  .hero-reveal:nth-child(4) { animation-delay: 0.55s; }
-  .hero-reveal:nth-child(5) { animation-delay: 0.7s; }
-
-  @keyframes heroFadeIn {
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  /* Respect users who prefer reduced motion */
-  @media (prefers-reduced-motion: reduce) {
-    .reveal, .hero-reveal {
-      opacity: 1 !important;
-      transform: none !important;
-      animation: none !important;
-    }
-  }
-</style>
+<link rel="stylesheet" href="css/styles.css">
 </head>
-<body>
+<body data-page="home">
+
+<a href="#main" class="skip-link">Skip to content</a>
 
 <nav>
   <div class="nav-inner">
-    <div class="logo">
+    <a href="index.html" class="logo">
       <span class="logo-mark"></span>
       Spring<em style="font-style:italic;color:var(--accent);">NFT</em>
-    </div>
+    </a>
     <ul class="nav-links">
-      <li><a href="#trending">trending</a></li>
-      <li><a href="#mint">mint</a></li>
-      <li><a href="#explore">explore</a></li>
-      <li><a href="#rankings">rankings</a></li>
-      <li><a href="#features">features</a></li>
+      <li><a href="explore.html" data-i18n="nav.explore">explore</a></li>
+      <li><a href="index.html#trending" data-i18n="nav.trending">trending</a></li>
+      <li><a href="index.html#mint" data-i18n="nav.mint">mint</a></li>
+      <li><a href="index.html#rankings" data-i18n="nav.rankings">rankings</a></li>
+      <li><a href="creators.html" data-i18n="nav.creators">creators</a></li>
+      <li><a href="about.html" data-i18n="nav.about">about</a></li>
     </ul>
-    <button class="btn btn-primary">Connect Wallet</button>
+    <div class="nav-actions">
+      <div class="lang-switch">
+        <button type="button" class="lang-btn active" data-lang="en" aria-label="English">EN</button>
+        <button type="button" class="lang-btn" data-lang="es" aria-label="Español">ES</button>
+        <button type="button" class="lang-btn" data-lang="ja" aria-label="日本語">JA</button>
+      </div>
+      <button type="button" class="btn btn-primary btn-wallet-desktop" data-action="connect-wallet" data-i18n="nav.connect">Connect Wallet</button>
+      <button type="button" class="btn btn-primary btn-wallet-mobile-sm" data-action="connect-wallet">Wallet</button>
+      <button type="button" class="menu-toggle" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </div>
 </nav>
+
+<div class="mobile-drawer" aria-hidden="true">
+  <div class="mobile-drawer-backdrop"></div>
+  <div class="mobile-drawer-panel">
+    <ul class="mobile-nav-links">
+      <li><a href="explore.html" data-i18n="nav.explore">explore</a></li>
+      <li><a href="index.html#trending" data-i18n="nav.trending">trending</a></li>
+      <li><a href="index.html#mint" data-i18n="nav.mint">mint</a></li>
+      <li><a href="index.html#rankings" data-i18n="nav.rankings">rankings</a></li>
+      <li><a href="creators.html" data-i18n="nav.creators">creators</a></li>
+      <li><a href="about.html" data-i18n="nav.about">about</a></li>
+      <li><a href="docs.html" data-i18n="nav.docs">docs</a></li>
+    </ul>
+    <div class="mobile-drawer-actions">
+      <div class="lang-switch">
+        <button type="button" class="lang-btn active" data-lang="en">EN</button>
+        <button type="button" class="lang-btn" data-lang="es">ES</button>
+        <button type="button" class="lang-btn" data-lang="ja">JA</button>
+      </div>
+      <button type="button" class="btn btn-primary btn-wallet-mobile" data-action="connect-wallet" data-i18n="nav.connect">Connect Wallet</button>
+    </div>
+  </div>
+</div>
+
+<main id="main">
 
 <section class="hero">
   <div class="container">
     <div class="badge hero-reveal">
       <span class="pulse"></span>
-      Now blooming on Solana
+      <span data-i18n="hero.badge">Now blooming on Solana</span>
     </div>
-    <h1 class="hero-reveal">Where Digital Art<br><span class="accent">Comes</span> <span class="accent-2">Alive</span></h1>
-    <p class="hero-reveal">A curator-first NFT marketplace built for collectors who care. Discover handpicked drops, instant settlement, and creators worth following.</p>
+    <h1 class="hero-reveal">
+      <span data-i18n="hero.title1">Where Digital Art</span><br>
+      <span class="accent" data-i18n="hero.title2">Comes</span>
+      <span class="accent-2" data-i18n="hero.title3">Alive</span>
+    </h1>
+    <p class="hero-reveal lead" data-i18n="hero.lead">A curator-first NFT marketplace built for collectors who care. Discover handpicked drops, instant settlement, and creators worth following.</p>
     <div class="hero-cta hero-reveal">
-      <button class="btn btn-primary">Start Collecting →</button>
-      <button class="btn btn-outline">Launch a Drop</button>
+      <a href="explore.html" class="btn btn-primary" data-i18n="hero.cta1">Start Collecting →</a>
+      <a href="creators.html" class="btn btn-outline" data-i18n="hero.cta2">Launch a Drop</a>
     </div>
-
     <div class="stats hero-reveal">
       <div class="stat">
         <div class="stat-num">38.2K</div>
-        <div class="stat-label">SOL Traded</div>
+        <div class="stat-label" data-i18n="stat.sol">SOL Traded</div>
       </div>
       <div class="stat">
         <div class="stat-num">9,471</div>
-        <div class="stat-label">Live Drops</div>
+        <div class="stat-label" data-i18n="stat.drops">Live Drops</div>
       </div>
       <div class="stat">
         <div class="stat-num">142K</div>
-        <div class="stat-label">Collectors</div>
+        <div class="stat-label" data-i18n="stat.collectors">Collectors</div>
       </div>
       <div class="stat">
         <div class="stat-num">0.4s</div>
-        <div class="stat-label">Settlement</div>
+        <div class="stat-label" data-i18n="stat.settlement">Settlement</div>
       </div>
     </div>
   </div>
@@ -832,158 +108,203 @@
 
 <section id="trending">
   <div class="container">
-    <span class="section-tag reveal">→ trending now</span>
-    <h2 class="section-title reveal">Drops <span class="italic">in bloom</span></h2>
+    <div class="section-header-row">
+      <div>
+        <span class="section-tag reveal" data-i18n="trending.tag">→ trending now</span>
+        <h2 class="section-title reveal"><span data-i18n="trending.title">Drops</span> <span class="italic" data-i18n="trending.titleItalic">in bloom</span></h2>
+      </div>
+      <a href="explore.html" class="btn btn-outline btn-sm reveal" data-i18n="trending.viewAll">View all →</a>
+    </div>
     <div class="grid-3 stagger">
-      <div class="collection-card reveal">
+      <a href="explore.html" class="collection-card reveal">
         <div class="nft-image art-1"></div>
         <div class="col-name">Goldenhour Society</div>
         <div class="col-creator">@dawnbreaker.sol</div>
         <div class="col-meta">
           <div>
-            <div class="col-price-label">Floor</div>
+            <div class="col-price-label" data-i18n="col.floor">Floor</div>
             <div class="col-price">2 SOL</div>
           </div>
           <div class="col-change">+22.1%</div>
         </div>
-      </div>
-      <div class="collection-card reveal">
+      </a>
+      <a href="explore.html" class="collection-card reveal">
         <div class="nft-image art-2"></div>
         <div class="col-name">Tidepool Codex</div>
         <div class="col-creator">@coastlines</div>
         <div class="col-meta">
           <div>
-            <div class="col-price-label">Floor</div>
+            <div class="col-price-label" data-i18n="col.floor">Floor</div>
             <div class="col-price">2.5 SOL</div>
           </div>
           <div class="col-change">+11.7%</div>
         </div>
-      </div>
-      <div class="collection-card reveal">
+      </a>
+      <a href="explore.html" class="collection-card reveal">
         <div class="nft-image art-3"></div>
         <div class="col-name">Static Reverie</div>
         <div class="col-creator">@noise.studio</div>
         <div class="col-meta">
           <div>
-            <div class="col-price-label">Floor</div>
+            <div class="col-price-label" data-i18n="col.floor">Floor</div>
             <div class="col-price">6.2 SOL</div>
           </div>
           <div class="col-change down">-4.8%</div>
         </div>
-      </div>
-      <div class="collection-card reveal">
+      </a>
+      <a href="explore.html" class="collection-card reveal">
         <div class="nft-image art-4"></div>
         <div class="col-name">Ember Cartography</div>
         <div class="col-creator">@firekeeper</div>
         <div class="col-meta">
           <div>
-            <div class="col-price-label">Floor</div>
+            <div class="col-price-label" data-i18n="col.floor">Floor</div>
             <div class="col-price">4.8 SOL</div>
           </div>
           <div class="col-change">+19.3%</div>
         </div>
-      </div>
-      <div class="collection-card reveal">
+      </a>
+      <a href="explore.html" class="collection-card reveal">
         <div class="nft-image art-5"></div>
         <div class="col-name">Quiet Frequencies</div>
         <div class="col-creator">@analog.echo</div>
         <div class="col-meta">
           <div>
-            <div class="col-price-label">Floor</div>
+            <div class="col-price-label" data-i18n="col.floor">Floor</div>
             <div class="col-price">7.6 SOL</div>
           </div>
           <div class="col-change">+8.2%</div>
         </div>
-      </div>
-      <div class="collection-card reveal">
+      </a>
+      <a href="explore.html" class="collection-card reveal">
         <div class="nft-image art-6"></div>
         <div class="col-name">Lowtide Atlas</div>
         <div class="col-creator">@saltwater</div>
         <div class="col-meta">
           <div>
-            <div class="col-price-label">Floor</div>
+            <div class="col-price-label" data-i18n="col.floor">Floor</div>
             <div class="col-price">12.5 SOL</div>
           </div>
           <div class="col-change">+14.6%</div>
         </div>
-      </div>
+      </a>
     </div>
   </div>
 </section>
 
 <section id="mint">
   <div class="container">
-    <span class="section-tag reveal" style="text-align:center;display:block;">→ live drop</span>
-    <h2 class="section-title reveal" style="text-align:center;">Mint the <span class="italic">first bloom</span></h2>
+    <span class="section-tag reveal" style="text-align:center;display:block;" data-i18n="mint.tag">→ live drop</span>
+    <h2 class="section-title reveal" style="text-align:center;"><span data-i18n="mint.title">Mint the</span> <span class="italic" data-i18n="mint.titleItalic">first bloom</span></h2>
     <div class="mint-card reveal">
       <div class="mint-preview"></div>
-      <h3>Spring <span class="italic">Genesis</span></h3>
-      <p>1,111 hand-curated pieces from our founding artist cohort. Holders unlock early access to every future drop.</p>
+      <h3><span data-i18n="mint.name">Spring</span> <span class="italic" data-i18n="mint.nameItalic">Genesis</span></h3>
+      <p data-i18n="mint.desc">1,111 hand-curated pieces from our founding artist cohort. Holders unlock early access to every future drop.</p>
       <div class="mint-meta">
         <div class="mint-meta-item">
-          <div class="mint-meta-label">Network</div>
+          <div class="mint-meta-label" data-i18n="mint.network">Network</div>
           <div class="mint-meta-value">Solana</div>
         </div>
         <div class="mint-meta-item">
-          <div class="mint-meta-label">Standard</div>
+          <div class="mint-meta-label" data-i18n="mint.standard">Standard</div>
           <div class="mint-meta-value">Metaplex</div>
         </div>
         <div class="mint-meta-item">
-          <div class="mint-meta-label">Mint Price</div>
+          <div class="mint-meta-label" data-i18n="mint.price">Mint Price</div>
           <div class="mint-meta-value">2.2 SOL</div>
         </div>
       </div>
-      <button class="btn btn-primary" style="width:100%;justify-content:center;padding:14px;">Connect Wallet to Mint</button>
+      <button type="button" class="btn btn-primary" style="width:100%;" data-action="connect-wallet" data-i18n="mint.btn">Connect Wallet to Mint</button>
     </div>
   </div>
 </section>
 
 <section id="rankings">
   <div class="container">
-    <span class="section-tag reveal">→ top performers</span>
-    <h2 class="section-title reveal">This week's <span class="italic">leaderboard</span></h2>
+    <span class="section-tag reveal" data-i18n="rankings.tag">→ top performers</span>
+    <h2 class="section-title reveal"><span data-i18n="rankings.title">This week's</span> <span class="italic" data-i18n="rankings.titleItalic">leaderboard</span></h2>
+
     <div class="leaderboard reveal">
       <div class="lb-row lb-header">
-        <div>Rank</div>
-        <div>Collection</div>
-        <div>Floor</div>
-        <div>Volume</div>
-        <div>24h</div>
+        <div data-i18n="rankings.rank">Rank</div>
+        <div data-i18n="rankings.collection">Collection</div>
+        <div data-i18n="rankings.floor">Floor</div>
+        <div data-i18n="rankings.volume">Volume</div>
+        <div data-i18n="rankings.24h">24h</div>
       </div>
       <div class="lb-row">
         <div class="lb-rank">01</div>
-        <div class="lb-collection"><img class="lb-thumb" src="https://img-cdn.magiceden.dev/rs:fill:800:0:0/plain/https%3A%2F%2Fmadlads.s3.us-west-2.amazonaws.com%2Fimages%2F7020.png" alt="Mad Lads"><span>Mad Lads</span></div>
+        <div class="lb-collection"><div class="lb-thumb art-2"></div><span>Goldenhour Society</span></div>
         <div class="col-price">142.0 SOL</div>
         <div class="col-price">8,420 SOL</div>
         <div class="col-change">+18.4%</div>
       </div>
       <div class="lb-row">
         <div class="lb-rank">02</div>
-        <div class="lb-collection"><img class="lb-thumb" src="https://img-cdn.magiceden.dev/rs:fill:800:0:0/plain/https%3A%2F%2Fgateway.irys.xyz%2F67dB5PdJdHEUAoLoBzHuiNAnegfMrf93aHU4YHbPaWGg" alt="SMB"><span>Solana Monkey Business</span></div>
+        <div class="lb-collection"><div class="lb-thumb art-4"></div><span>Tidepool Codex</span></div>
         <div class="col-price">128.5 SOL</div>
         <div class="col-price">5,210 SOL</div>
         <div class="col-change">+12.7%</div>
       </div>
       <div class="lb-row">
         <div class="lb-rank">03</div>
-        <div class="lb-collection"><img class="lb-thumb" src="https://img-cdn.magiceden.dev/rs:fill:800:0:0/plain/https%3A%2F%2Ffamousfoxes.com%2Fhd%2F9971.png" alt="Famous Fox Federation"><span>Famous Fox Federation</span></div>
+        <div class="lb-collection"><div class="lb-thumb art-6"></div><span>Static Reverie</span></div>
         <div class="col-price">31.2 SOL</div>
         <div class="col-price">3,890 SOL</div>
         <div class="col-change">+9.8%</div>
       </div>
       <div class="lb-row">
         <div class="lb-rank">04</div>
-        <div class="lb-collection"><img class="lb-thumb" src="data:image/jpeg;base64,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" alt="Degenerate Ape Academy"><span>Degenerate Ape Academy</span></div>
+        <div class="lb-collection"><div class="lb-thumb art-1"></div><span>Ember Cartography</span></div>
         <div class="col-price">42.6 SOL</div>
         <div class="col-price">2,140 SOL</div>
         <div class="col-change">+6.3%</div>
       </div>
       <div class="lb-row">
         <div class="lb-rank">05</div>
-        <div class="lb-collection"><img class="lb-thumb" src="data:image/jpeg;base64,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" alt="Claynosaurz"><span>Claynosaurz</span></div>
+        <div class="lb-collection"><div class="lb-thumb art-5"></div><span>Quiet Frequencies</span></div>
         <div class="col-price">24.8 SOL</div>
         <div class="col-price">1,470 SOL</div>
         <div class="col-change">+4.1%</div>
+      </div>
+    </div>
+
+    <div class="lb-cards reveal">
+      <div class="lb-card">
+        <div class="lb-card-top">
+          <div class="lb-rank">01</div>
+          <div class="lb-thumb art-2"></div>
+          <div class="lb-collection"><span>Goldenhour Society</span></div>
+        </div>
+        <div class="lb-card-stats">
+          <div><div class="lb-stat-label" data-i18n="rankings.floor">Floor</div><div class="col-price">142 SOL</div></div>
+          <div><div class="lb-stat-label" data-i18n="rankings.volume">Volume</div><div class="col-price">8,420</div></div>
+          <div><div class="lb-stat-label" data-i18n="rankings.24h">24h</div><div class="col-change">+18.4%</div></div>
+        </div>
+      </div>
+      <div class="lb-card">
+        <div class="lb-card-top">
+          <div class="lb-rank">02</div>
+          <div class="lb-thumb art-4"></div>
+          <div class="lb-collection"><span>Tidepool Codex</span></div>
+        </div>
+        <div class="lb-card-stats">
+          <div><div class="lb-stat-label" data-i18n="rankings.floor">Floor</div><div class="col-price">128 SOL</div></div>
+          <div><div class="lb-stat-label" data-i18n="rankings.volume">Volume</div><div class="col-price">5,210</div></div>
+          <div><div class="lb-stat-label" data-i18n="rankings.24h">24h</div><div class="col-change">+12.7%</div></div>
+        </div>
+      </div>
+      <div class="lb-card">
+        <div class="lb-card-top">
+          <div class="lb-rank">03</div>
+          <div class="lb-thumb art-6"></div>
+          <div class="lb-collection"><span>Static Reverie</span></div>
+        </div>
+        <div class="lb-card-stats">
+          <div><div class="lb-stat-label" data-i18n="rankings.floor">Floor</div><div class="col-price">31 SOL</div></div>
+          <div><div class="lb-stat-label" data-i18n="rankings.volume">Volume</div><div class="col-price">3,890</div></div>
+          <div><div class="lb-stat-label" data-i18n="rankings.24h">24h</div><div class="col-change">+9.8%</div></div>
+        </div>
       </div>
     </div>
   </div>
@@ -991,115 +312,95 @@
 
 <section id="features">
   <div class="container">
-    <span class="section-tag reveal">→ why spring</span>
-    <h2 class="section-title reveal">Made for <span class="italic">collectors</span></h2>
+    <span class="section-tag reveal" data-i18n="features.tag">→ why spring</span>
+    <h2 class="section-title reveal"><span data-i18n="features.title">Made for</span> <span class="italic" data-i18n="features.titleItalic">collectors</span></h2>
     <div class="features-grid stagger">
       <div class="feature reveal">
         <div class="feature-icon">🌅</div>
-        <h3>Curated, Not Crowded</h3>
-        <p>Every drop is reviewed by our artist council. No spam, no rugs, just work worth owning.</p>
+        <h3 data-i18n="feat1.title">Curated, Not Crowded</h3>
+        <p data-i18n="feat1.desc">Every drop is reviewed by our artist council. No spam, no rugs, just work worth owning.</p>
       </div>
       <div class="feature reveal">
         <div class="feature-icon">⚡</div>
-        <h3>Instant Settlement</h3>
-        <p>Sub-second finality on Solana. Your trade clears before you can refresh the page.</p>
+        <h3 data-i18n="feat2.title">Instant Settlement</h3>
+        <p data-i18n="feat2.desc">Sub-second finality on Solana. Your trade clears before you can refresh the page.</p>
       </div>
       <div class="feature reveal">
         <div class="feature-icon">🌊</div>
-        <h3>Liquid Floors</h3>
-        <p>Built-in floor sweeping and bid pools keep collections liquid even in quiet markets.</p>
+        <h3 data-i18n="feat3.title">Liquid Floors</h3>
+        <p data-i18n="feat3.desc">Built-in floor sweeping and bid pools keep collections liquid even in quiet markets.</p>
       </div>
       <div class="feature reveal">
         <div class="feature-icon">🎨</div>
-        <h3>Artist-First Royalties</h3>
-        <p>On-chain royalties enforced at the protocol level. Creators earn forever, automatically.</p>
+        <h3 data-i18n="feat4.title">Artist-First Royalties</h3>
+        <p data-i18n="feat4.desc">On-chain royalties enforced at the protocol level. Creators earn forever, automatically.</p>
       </div>
       <div class="feature reveal">
         <div class="feature-icon">🔭</div>
-        <h3>Discovery Engine</h3>
-        <p>An algorithm tuned for taste, not hype. Find the next collection before everyone else does.</p>
+        <h3 data-i18n="feat5.title">Discovery Engine</h3>
+        <p data-i18n="feat5.desc">An algorithm tuned for taste, not hype. Find the next collection before everyone else does.</p>
       </div>
       <div class="feature reveal">
         <div class="feature-icon">🌱</div>
-        <h3>Bloom Rewards</h3>
-        <p>Trade, hold, and stake to earn $BLOOM. Redeem for fee rebates, allowlist spots, and more.</p>
+        <h3 data-i18n="feat6.title">Bloom Rewards</h3>
+        <p data-i18n="feat6.desc">Trade, hold, and stake to earn $BLOOM. Redeem for fee rebates, allowlist spots, and more.</p>
       </div>
     </div>
   </div>
 </section>
 
+</main>
+
 <footer>
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <div class="logo">
+        <a href="index.html" class="logo">
           <span class="logo-mark"></span>
           Spring<em style="font-style:italic;color:var(--accent);">NFT</em>
-        </div>
-        <p>A curator-first NFT marketplace on Solana. Built for collectors who care about the art, not just the chart.</p>
+        </a>
+        <p data-i18n="footer.desc">A curator-first NFT marketplace on Solana. Built for collectors who care about the art, not just the chart.</p>
       </div>
       <div class="footer-col">
-        <h4>Marketplace</h4>
+        <h4 data-i18n="footer.marketplace">Marketplace</h4>
         <ul>
-          <li><a href="#explore">Explore</a></li>
-          <li><a href="#trending">Trending</a></li>
-          <li><a href="#rankings">Rankings</a></li>
-          <li><a href="#mint">Mint</a></li>
+          <li><a href="explore.html" data-i18n="footer.explore">Explore</a></li>
+          <li><a href="index.html#trending" data-i18n="footer.trending">Trending</a></li>
+          <li><a href="index.html#rankings" data-i18n="footer.rankings">Rankings</a></li>
+          <li><a href="index.html#mint" data-i18n="footer.mint">Mint</a></li>
         </ul>
       </div>
       <div class="footer-col">
-        <h4>Resources</h4>
+        <h4 data-i18n="footer.resources">Resources</h4>
         <ul>
-          <li><a href="#">Documentation</a></li>
-          <li><a href="#">Developer API</a></li>
-          <li><a href="#">Field Notes</a></li>
-          <li><a href="#">Help Center</a></li>
+          <li><a href="docs.html" data-i18n="footer.documentation">Documentation</a></li>
+          <li><a href="docs.html#api" data-i18n="footer.api">Developer API</a></li>
+          <li><a href="about.html" data-i18n="footer.notes">Field Notes</a></li>
+          <li><a href="docs.html#help" data-i18n="footer.help">Help Center</a></li>
         </ul>
       </div>
       <div class="footer-col">
-        <h4>Community</h4>
+        <h4 data-i18n="footer.community">Community</h4>
         <ul>
-          <li><a href="#">Discord</a></li>
-          <li><a href="#">Twitter / X</a></li>
-          <li><a href="#">Telegram</a></li>
-          <li><a href="#">Spring DAO</a></li>
+          <li><a href="#" data-i18n="footer.discord">Discord</a></li>
+          <li><a href="#" data-i18n="footer.twitter">Twitter / X</a></li>
+          <li><a href="#" data-i18n="footer.telegram">Telegram</a></li>
+          <li><a href="about.html" data-i18n="footer.dao">Spring DAO</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <p>© 2026 SpringNFT — Bloom responsibly.</p>
+      <p data-i18n="footer.copyright">© 2026 SpringNFT — Bloom responsibly.</p>
       <div class="socials">
-        <a href="#" title="Twitter">𝕏</a>
-        <a href="#" title="Discord">⬡</a>
-        <a href="#" title="Telegram">✈</a>
+        <a href="#" title="Twitter" aria-label="Twitter">𝕏</a>
+        <a href="#" title="Discord" aria-label="Discord">⬡</a>
+        <a href="#" title="Telegram" aria-label="Telegram">✈</a>
       </div>
     </div>
   </div>
 </footer>
 
-<script>
-  // Scroll reveal — fades elements in as they enter the viewport
-  (function() {
-    const reveals = document.querySelectorAll('.reveal');
-    if (!('IntersectionObserver' in window)) {
-      // Fallback for very old browsers — just show everything
-      reveals.forEach(el => el.classList.add('visible'));
-      return;
-    }
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target); // animate once, then stop watching
-        }
-      });
-    }, {
-      threshold: 0.12,        // trigger when ~12% of element is visible
-      rootMargin: '0px 0px -60px 0px'  // fire slightly before the element enters
-    });
-    reveals.forEach(el => observer.observe(el));
-  })();
-</script>
-
+<script src="js/i18n.js"></script>
+<script src="js/app.js"></script>
 </body>
 </html>

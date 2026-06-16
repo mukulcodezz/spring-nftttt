@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0a0e10">
+<title>Developer Docs — SpringNFT</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Fraunces:ital,wght@0,600;0,700;0,800;1,700;1,800&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-page="docs">
+
+<a href="#main" class="skip-link">Skip to content</a>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo"><span class="logo-mark"></span>Spring<em style="font-style:italic;color:var(--accent);">NFT</em></a>
+    <ul class="nav-links">
+      <li><a href="explore.html" data-i18n="nav.explore">explore</a></li>
+      <li><a href="index.html#trending" data-i18n="nav.trending">trending</a></li>
+      <li><a href="index.html#mint" data-i18n="nav.mint">mint</a></li>
+      <li><a href="index.html#rankings" data-i18n="nav.rankings">rankings</a></li>
+      <li><a href="creators.html" data-i18n="nav.creators">creators</a></li>
+      <li><a href="about.html" data-i18n="nav.about">about</a></li>
+    </ul>
+    <div class="nav-actions">
+      <div class="lang-switch">
+        <button type="button" class="lang-btn active" data-lang="en">EN</button>
+        <button type="button" class="lang-btn" data-lang="es">ES</button>
+        <button type="button" class="lang-btn" data-lang="ja">JA</button>
+      </div>
+      <button type="button" class="btn btn-primary btn-wallet-desktop" data-action="connect-wallet" data-i18n="nav.connect">Connect Wallet</button>
+      <button type="button" class="btn btn-primary btn-wallet-mobile-sm" data-action="connect-wallet">Wallet</button>
+      <button type="button" class="menu-toggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<div class="mobile-drawer" aria-hidden="true">
+  <div class="mobile-drawer-backdrop"></div>
+  <div class="mobile-drawer-panel">
+    <ul class="mobile-nav-links">
+      <li><a href="explore.html" data-i18n="nav.explore">explore</a></li>
+      <li><a href="index.html#trending" data-i18n="nav.trending">trending</a></li>
+      <li><a href="index.html#mint" data-i18n="nav.mint">mint</a></li>
+      <li><a href="index.html#rankings" data-i18n="nav.rankings">rankings</a></li>
+      <li><a href="creators.html" data-i18n="nav.creators">creators</a></li>
+      <li><a href="about.html" data-i18n="nav.about">about</a></li>
+      <li><a href="docs.html" data-i18n="nav.docs">docs</a></li>
+    </ul>
+    <div class="mobile-drawer-actions">
+      <div class="lang-switch">
+        <button type="button" class="lang-btn active" data-lang="en">EN</button>
+        <button type="button" class="lang-btn" data-lang="es">ES</button>
+        <button type="button" class="lang-btn" data-lang="ja">JA</button>
+      </div>
+      <button type="button" class="btn btn-primary btn-wallet-mobile" data-action="connect-wallet" data-i18n="nav.connect">Connect Wallet</button>
+    </div>
+  </div>
+</div>
+
+<main id="main">
+
+<section class="page-hero">
+  <div class="container">
+    <div class="breadcrumb reveal">
+      <a href="index.html" data-i18n="breadcrumb.home">Home</a><span>/</span><span data-i18n="nav.docs">docs</span>
+    </div>
+    <h1 class="reveal"><span data-i18n="docs.title">Developer</span> <span class="italic" style="color:var(--accent);" data-i18n="docs.titleItalic">docs</span></h1>
+    <p class="reveal" data-i18n="docs.lead">Integrate SpringNFT into your app with our REST API and on-chain programs.</p>
+  </div>
+</section>
+
+<section style="padding-top:0;">
+  <div class="container">
+    <div class="docs-layout">
+      <nav class="docs-nav reveal" aria-label="Documentation sections">
+        <a href="#quickstart" class="active" data-i18n="docs.quickstart">Quick start</a>
+        <a href="#api" data-i18n="docs.endpoints">Endpoints</a>
+        <a href="#auth" data-i18n="docs.auth">Authentication</a>
+        <a href="#sdk" data-i18n="docs.sdk">SDK</a>
+        <a href="#help" data-i18n="footer.help">Help Center</a>
+      </nav>
+
+      <div>
+        <div class="content-block reveal" id="quickstart">
+          <h2 data-i18n="docs.quickstart">Quick start</h2>
+          <p data-i18n="docs.quickstart.p">Fetch trending collections with a single request:</p>
+          <pre class="code-block">curl https://api.springnft.io/v1/collections/trending \
+  -H "Accept: application/json"</pre>
+        </div>
+
+        <div class="content-block reveal" id="api">
+          <h2 data-i18n="docs.endpoints">Endpoints</h2>
+          <p data-i18n="docs.endpoints.p">Base URL: https://api.springnft.io/v1</p>
+          <pre class="code-block">GET  /collections/trending
+GET  /collections/:id
+GET  /collections/:id/listings
+POST /orders/bid
+POST /orders/list</pre>
+        </div>
+
+        <div class="content-block reveal" id="auth">
+          <h2 data-i18n="docs.auth">Authentication</h2>
+          <p data-i18n="docs.auth.p">Include your API key in the Authorization header. Keys are available in the developer dashboard.</p>
+          <pre class="code-block">Authorization: Bearer sk_live_xxxxxxxx</pre>
+        </div>
+
+        <div class="content-block reveal" id="sdk">
+          <h2 data-i18n="docs.sdk">SDK</h2>
+          <p data-i18n="docs.sdk.p">Official TypeScript SDK coming soon. Join our Discord for early access.</p>
+          <pre class="code-block">npm install @springnft/sdk  # coming soon</pre>
+        </div>
+
+        <div class="content-block reveal" id="help">
+          <h2 data-i18n="footer.help">Help Center</h2>
+          <p>Need help integrating? Reach us at <a href="mailto:dev@springnft.io" style="color:var(--accent-2);">dev@springnft.io</a> or join our Discord community.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo"><span class="logo-mark"></span>Spring<em style="font-style:italic;color:var(--accent);">NFT</em></a>
+        <p data-i18n="footer.desc">A curator-first NFT marketplace on Solana.</p>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footer.marketplace">Marketplace</h4>
+        <ul>
+          <li><a href="explore.html" data-i18n="footer.explore">Explore</a></li>
+          <li><a href="index.html#trending" data-i18n="footer.trending">Trending</a></li>
+          <li><a href="index.html#rankings" data-i18n="footer.rankings">Rankings</a></li>
+          <li><a href="index.html#mint" data-i18n="footer.mint">Mint</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footer.resources">Resources</h4>
+        <ul>
+          <li><a href="docs.html" data-i18n="footer.documentation">Documentation</a></li>
+          <li><a href="docs.html#api" data-i18n="footer.api">Developer API</a></li>
+          <li><a href="about.html" data-i18n="footer.notes">Field Notes</a></li>
+          <li><a href="docs.html#help" data-i18n="footer.help">Help Center</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footer.community">Community</h4>
+        <ul>
+          <li><a href="#" data-i18n="footer.discord">Discord</a></li>
+          <li><a href="#" data-i18n="footer.twitter">Twitter / X</a></li>
+          <li><a href="#" data-i18n="footer.telegram">Telegram</a></li>
+          <li><a href="about.html" data-i18n="footer.dao">Spring DAO</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p data-i18n="footer.copyright">© 2026 SpringNFT — Bloom responsibly.</p>
+      <div class="socials"><a href="#" aria-label="Twitter">𝕏</a><a href="#" aria-label="Discord">⬡</a><a href="#" aria-label="Telegram">✈</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/i18n.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
